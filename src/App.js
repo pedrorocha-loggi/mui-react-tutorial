@@ -1,7 +1,14 @@
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
 function App() {
   return (
-    <div />
+    <AppBar>
+      <Toolbar>
+        <Typography variant="h6">
+          Anotações
+        </Typography>
+      </Toolbar>
+    </AppBar>
   );
 }
 
