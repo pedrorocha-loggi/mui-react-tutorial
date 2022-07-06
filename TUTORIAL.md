@@ -59,5 +59,30 @@
   Apagar
 </Button>
 ```
+1. Add new note dialog
+```jsx
+<Dialog
+  open={showAddDialog}
+  onClose={() => setShowAddDialog(false)}
+  aria-labelledby="add-dialog-title"
+  aria-describedby="add-dialog-description"
+>
+  <DialogTitle id="add-dialog-title">Novo anotação</DialogTitle>
+  <DialogContent>
+    <TextField onChange={event => newNote = event.target.value} />
+  </DialogContent>
+  <DialogActions>
+    <Button onClick={() => setShowAddDialog(false)}>
+      Cancelar
+    </Button>
+    <Button onClick={() => {
+      setNotes(prevNotes => prevNotes.concat(newNote));
+      setShowAddDialog(false);
+    }}>
+      Adicionar
+    </Button>
+  </DialogActions>
+</Dialog>
+```
 
 https://www.youtube.com/watch?v=8aGhZQkoFbQ
