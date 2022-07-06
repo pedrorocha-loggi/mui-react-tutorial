@@ -84,5 +84,6 @@
   </DialogActions>
 </Dialog>
 ```
+1. Split into different components.
 
 https://www.youtube.com/watch?v=8aGhZQkoFbQ
