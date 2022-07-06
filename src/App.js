@@ -1,13 +1,17 @@
-import { AppBar, Box, Card, CardContent, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Box, Button, Card, CardActions, CardContent, IconButton, Toolbar, Typography } from "@material-ui/core";
+import { Add, Delete } from "@material-ui/icons";
 
 function App() {
   return (
     <Box>
       <AppBar position="sticky">
         <Toolbar>
-          <Typography variant="h6">
+          <Typography variant="h6" style={{ flexGrow: 1 }}>
             Anotações
           </Typography>
+          <IconButton style={{ color: 'white' }}>
+            <Add />
+          </IconButton>
         </Toolbar>
       </AppBar>
 
@@ -16,6 +20,11 @@ function App() {
           <CardContent>
             <Typography>Conteúdo</Typography>
           </CardContent>
+          <CardActions style={{ flexDirection: 'row-reverse' }}>
+            <Button size="small" color="primary" startIcon={<Delete />}>
+              Apagar
+            </Button>
+          </CardActions>
         </Card>
       ))}
     </Box >

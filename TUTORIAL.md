@@ -1,4 +1,3 @@
-
 1. `mkdir myNotesApp`
 1. `cd myNotesApp`
 1. `npx create-react-app .`
@@ -14,7 +13,7 @@
 <Button>Hello World</Button>
 ```
 1. Add toolbar 
-```html
+```jsx
 <AppBar>
   <Toolbar>
     <Typography variant="h6">Anotações</Typography>
@@ -22,13 +21,28 @@
 </AppBar>
 ```
 1. Add bounding box and card
-```html
+```jsx
  <Card style={{ margin: 10 }}>
    <CardContent>
      <Typography>Conteúdo</Typography>
    </CardContent>
  </Card>
 ```
+1. Add delete button in card
+```jsx
+<CardActions style={{ flexDirection: 'row-reverse' }}>
+  <Button size="small" color="primary" startIcon={<Delete />}>
+    Apagar
+  </Button>
+</CardActions>
+```
 1. Add more cards and fix margin
+1. `npm install @material-ui/icons`
+1. Add new note button
+```jsx
+<IconButton style={{ color: 'white' }}>
+  <Add />
+</IconButton>
+```
 
 https://www.youtube.com/watch?v=8aGhZQkoFbQ
