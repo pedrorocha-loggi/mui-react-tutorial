@@ -2,6 +2,7 @@ import { AppBar, Box, Button, Card, CardActions, CardContent, IconButton, Toolba
 import { Add, Delete } from "@material-ui/icons";
 
 function App() {
+  const notes = Array(10).fill('Conteúdo');
   return (
     <Box>
       <AppBar position="sticky">
@@ -15,13 +16,20 @@ function App() {
         </Toolbar>
       </AppBar>
 
-      {(new Array(10)).fill(0).map((_, i) => (
-        <Card style={{ marginTop: 10, marginRight: 10, marginLeft: 10 }} key={i}>
+      {notes.map((content, index) => (
+        <Card
+          style={{ marginTop: 10, marginRight: 10, marginLeft: 10 }}
+          key={index}
+        >
           <CardContent>
-            <Typography>Conteúdo</Typography>
+            <Typography>{content}</Typography>
           </CardContent>
           <CardActions style={{ flexDirection: 'row-reverse' }}>
-            <Button size="small" color="primary" startIcon={<Delete />}>
+            <Button
+              size="small"
+              color="primary"
+              startIcon={<Delete />}
+            >
               Apagar
             </Button>
           </CardActions>
