@@ -44,5 +44,20 @@
   <Add />
 </IconButton>
 ```
+1. Implement delete
+```jsx
+<Button
+  size="small"
+  color="primary"
+  onClick={() => setNotes(prevNotes => {
+    const newNotes = prevNotes.slice();
+    newNotes.splice(index, 1);
+    return newNotes;
+  })}
+  startIcon={<Delete />}
+>
+  Apagar
+</Button>
+```
 
 https://www.youtube.com/watch?v=8aGhZQkoFbQ

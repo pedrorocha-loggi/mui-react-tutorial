@@ -1,8 +1,10 @@
 import { AppBar, Box, Button, Card, CardActions, CardContent, IconButton, Toolbar, Typography } from "@material-ui/core";
 import { Add, Delete } from "@material-ui/icons";
+import { useState } from "react";
 
 function App() {
-  const notes = Array(10).fill('Conteúdo');
+  const [notes, setNotes] = useState(
+    Array(10).fill('Conteúdo').map((content, index) => `${content} ${index}`));
   return (
     <Box>
       <AppBar position="sticky">
@@ -22,12 +24,17 @@ function App() {
           style={{ marginTop: 10, marginRight: 10, marginLeft: 10 }}
         >
           <CardContent>
-            <Typography>{content} {index}</Typography>
+            <Typography>{content}</Typography>
           </CardContent>
           <CardActions style={{ flexDirection: 'row-reverse' }}>
             <Button
               size="small"
               color="primary"
+              onClick={() => setNotes(prevNotes => {
+                const newNotes = prevNotes.slice();
+                newNotes.splice(index, 1);
+                return newNotes;
+              })}
               startIcon={<Delete />}
             >
               Apagar
