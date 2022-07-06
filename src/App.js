@@ -18,11 +18,11 @@ function App() {
 
       {notes.map((content, index) => (
         <Card
-          style={{ marginTop: 10, marginRight: 10, marginLeft: 10 }}
           key={index}
+          style={{ marginTop: 10, marginRight: 10, marginLeft: 10 }}
         >
           <CardContent>
-            <Typography>{content}</Typography>
+            <Typography>{content} {index}</Typography>
           </CardContent>
           <CardActions style={{ flexDirection: 'row-reverse' }}>
             <Button
