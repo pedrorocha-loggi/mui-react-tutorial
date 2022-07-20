@@ -1,4 +1,3 @@
-import './App.css';
 import { AppBar, Box, Button, Card, CardActions, CardContent, IconButton, Toolbar, Typography } from '@mui/material';
 import { Add, Delete } from '@mui/icons-material';
 
