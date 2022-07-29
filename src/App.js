@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, Card, CardActions, CardContent, Dialog, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, TextField, Toolbar, Typography } from '@mui/material';
 import { Add, Delete } from '@mui/icons-material';
 import { useState } from 'react';
 
@@ -12,7 +12,29 @@ function App() {
         open={openNewNoteDialog}
         onClose={() => setOpenNewNoteDialog(false)}
       >
-        My dialog
+        <DialogTitle>Adicionar anotação</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Adicione o texto da sua nova anotação.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="text"
+            label="Texto da anotação"
+            type="text"
+            fullWidth
+            variant="outlined"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenNewNoteDialog(false)}>
+            Cancelar
+          </Button>
+          <Button onClick={() => setOpenNewNoteDialog(false)}>
+            Adicionar
+          </Button>
+        </DialogActions>
       </Dialog>
       <AppBar position="sticky">
         <Toolbar>
