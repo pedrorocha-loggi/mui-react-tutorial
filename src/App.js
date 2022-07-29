@@ -1,9 +1,11 @@
 import { AppBar, Box, Button, Card, CardActions, CardContent, IconButton, Toolbar, Typography } from '@mui/material';
 import { Add, Delete } from '@mui/icons-material';
+import { useState } from 'react';
 
 function App() {
-  const notes = Array(10).fill('Conteúdo').map(
+  const defaultNotes = Array(10).fill('Conteúdo').map(
     (content, index) => `${content} ${index}`);
+  const [notes, setNotes] = useState(defaultNotes);
   return (
     <Box>
       <AppBar position="sticky">
