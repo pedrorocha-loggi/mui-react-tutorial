@@ -7,10 +7,21 @@ it('renders the title', () => {
   expect(screen.getByText(/Minhas anotações/)).toBeVisible();
 });
 
-it('displays new note dialog', () => {
-  render(<App />);
-  userEvent.click(screen.getByLabelText(/Adicionar nota/i));
-  expect(screen.getByRole('textbox', { name: /Texto da anotação/ }));
-  expect(screen.getByRole('button', { name: /Adicionar/ }));
-  expect(screen.getByRole('button', { name: /Cancelar/ }));
+describe('new note dialog', () => {
+  it('displays new note dialog', () => {
+    render(<App />);
+    userEvent.click(screen.getByLabelText(/Adicionar nota/i));
+    expect(screen.getByRole('textbox', { name: /Texto da anotação/ })).toBeVisible();
+    expect(screen.getByRole('button', { name: /Adicionar/ })).toBeVisible();
+    expect(screen.getByRole('button', { name: /Cancelar/ })).toBeVisible();
+  });
+
+  it('closes the dialog', () => {
+    render(<App />);
+    userEvent.click(screen.getByLabelText(/Adicionar nota/i));
+    userEvent.click(screen.getByRole('button', { name: /Cancelar/ }));
+    expect(screen.getByRole('textbox', { name: /Texto da anotação/ })).not.toBeVisible();
+    expect(screen.queryByRole('button', { name: /Apagar/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('listitem')).not.toBeInTheDocument();
+  });
 });

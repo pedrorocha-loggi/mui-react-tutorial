@@ -59,7 +59,7 @@ function App({ initialNotes }) {
         </Toolbar>
       </AppBar>
       {notes.map((note, index) => (
-        <Card key={index} sx={{ margin: 1 }}>
+        <Card key={index} sx={{ margin: 1 }} role='listitem'>
           <CardContent>
             <Typography>{note}</Typography>
           </CardContent>
