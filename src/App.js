@@ -29,13 +29,19 @@ function App({ initialNotes }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenNewNoteDialog(false)}>
+          <Button
+            color='error'
+            onClick={() => setOpenNewNoteDialog(false)}
+          >
             Cancelar
           </Button>
-          <Button onClick={() => {
-            setNotes(prevNotes => prevNotes.concat(newNote));
-            setOpenNewNoteDialog(false);
-          }}>
+          <Button
+            variant='contained'
+            onClick={() => {
+              setNotes(prevNotes => prevNotes.concat(newNote));
+              setOpenNewNoteDialog(false);
+            }}
+          >
             Adicionar
           </Button>
         </DialogActions>
