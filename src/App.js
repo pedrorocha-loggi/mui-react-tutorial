@@ -6,6 +6,8 @@ function App() {
   const [notes, setNotes] = useState(Array(10).fill('Conteúdo').map(
     (content, index) => `${content} ${index}`));
   const [openNewNoteDialog, setOpenNewNoteDialog] = useState(false);
+  const [newNote, setNewNote] = useState('');
+
   return (
     <Box>
       <Dialog
@@ -20,18 +22,21 @@ function App() {
           <TextField
             autoFocus
             margin="dense"
-            id="text"
             label="Texto da anotação"
             type="text"
             fullWidth
             variant="outlined"
+            onChange={event => setNewNote(event.target.value)}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenNewNoteDialog(false)}>
             Cancelar
           </Button>
-          <Button onClick={() => setOpenNewNoteDialog(false)}>
+          <Button onClick={() => {
+            setNotes(prevNotes => prevNotes.concat(newNote));
+            setOpenNewNoteDialog(false);
+          }}>
             Adicionar
           </Button>
         </DialogActions>
