@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, Card, CardActions, CardContent, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Card, CardActions, CardContent, Dialog, IconButton, Toolbar, Typography } from '@mui/material';
 import { Add, Delete } from '@mui/icons-material';
 import { useState } from 'react';
 
@@ -23,6 +23,11 @@ function App() {
           </CardContent>
           <CardActions sx={{ flexDirection: 'row-reverse' }}>
             <Button
+              onClick={() => setNotes(prevNotes => {
+                const newNotes = prevNotes.slice();
+                newNotes.splice(index, 1);
+                return newNotes;
+              })}
               size="small"
               color="primary"
               startIcon={<Delete />}
@@ -31,7 +36,6 @@ function App() {
             </Button>
           </CardActions>
         </Card>
-
       ))}
     </Box>
   );
