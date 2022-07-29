@@ -1,17 +1,20 @@
-import { AppBar, Box, Button, Card, CardActions, CardContent, Dialog, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, TextField, Toolbar, Typography } from '@mui/material';
 import { Add, Delete } from '@mui/icons-material';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 function App() {
   const defaultNotes = Array(10).fill('Conteúdo').map(
     (content, index) => `${content} ${index}`);
   const [notes, setNotes] = useState(defaultNotes);
+  const [newNoteDialog, setNewNoteDialog] = useState(false);
+  const newNote = useRef('');
+
   return (
     <Box>
       <AppBar position="sticky">
         <Toolbar>
           <Typography flexGrow={1}>Minhas anotações</Typography>
-          <IconButton color='inherit' >
+          <IconButton color='inherit' onClick={() => setNewNoteDialog(true)}>
             <Add />
           </IconButton>
         </Toolbar>
@@ -37,6 +40,32 @@ function App() {
           </CardActions>
         </Card>
       ))}
+      <Dialog
+        open={newNoteDialog}
+        onClose={() => setNewNoteDialog(false)}
+      >
+        <DialogTitle>Nova nota</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Adicione o texto da sua nota.
+          </DialogContentText>
+          <TextField
+            margin="dense"
+            label="Texto do nota"
+            variant="outlined"
+            type="text"
+            fullWidth
+            onChange={event => newNote.current = event.target.value}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setNewNoteDialog(false)}>Cancel</Button>
+          <Button onClick={() => {
+            setNotes(prevNotes => [newNote.current].concat(prevNotes));
+            setNewNoteDialog(false);
+          }} autoFocus>Adicionar</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
