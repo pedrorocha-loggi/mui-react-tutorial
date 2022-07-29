@@ -9,43 +9,6 @@ function App({ initialNotes }) {
 
   return (
     <Box>
-      <Dialog
-        open={openNewNoteDialog}
-        onClose={() => setOpenNewNoteDialog(false)}
-      >
-        <DialogTitle>Adicionar anotação</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Adicione o texto da sua nova anotação.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Texto da anotação"
-            type="text"
-            fullWidth
-            variant="outlined"
-            onChange={event => setNewNote(event.target.value)}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button
-            color='error'
-            onClick={() => setOpenNewNoteDialog(false)}
-          >
-            Cancelar
-          </Button>
-          <Button
-            variant='contained'
-            onClick={() => {
-              setNotes(prevNotes => prevNotes.concat(newNote));
-              setOpenNewNoteDialog(false);
-            }}
-          >
-            Adicionar
-          </Button>
-        </DialogActions>
-      </Dialog>
       <AppBar position="sticky">
         <Toolbar>
           <Typography flexGrow={1}>Minhas anotações</Typography>
@@ -85,6 +48,42 @@ function App({ initialNotes }) {
           </CardActions>
         </Card>
       ))}
+      {openNewNoteDialog && (
+        <Dialog open={true} onClose={() => setOpenNewNoteDialog(false)}>
+          <DialogTitle>Adicionar anotação</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Adicione o texto da sua nova anotação.
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Texto da anotação"
+              type="text"
+              fullWidth
+              variant="outlined"
+              onChange={event => setNewNote(event.target.value)}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              color='error'
+              onClick={() => setOpenNewNoteDialog(false)}
+            >
+              Cancelar
+            </Button>
+            <Button
+              variant='contained'
+              onClick={() => {
+                setNotes(prevNotes => prevNotes.concat(newNote));
+                setOpenNewNoteDialog(false);
+              }}
+            >
+              Adicionar
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </Box>
   );
 }
