@@ -1,8 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+it('renders the app bar', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByText('Minhas anotações')).toBeVisible();
+});
+
+it('renders one note', () => {
+  render(<App initialNotes={['test note 1']} />);
+  expect(screen.getByRole('listitem', { name: 'test note 1' })).toBeVisible();
 });

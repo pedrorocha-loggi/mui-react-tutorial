@@ -2,10 +2,8 @@ import { AppBar, Box, Button, Card, CardActions, CardContent, Dialog, DialogActi
 import { Add, Delete } from '@mui/icons-material';
 import { useRef, useState } from 'react';
 
-function App() {
-  const defaultNotes = Array(10).fill('Conteúdo').map(
-    (content, index) => `${content} ${index}`);
-  const [notes, setNotes] = useState(defaultNotes);
+function App({ initialNotes }) {
+  const [notes, setNotes] = useState(initialNotes || []);
   const [newNoteDialog, setNewNoteDialog] = useState(false);
   const newNote = useRef('');
 
@@ -20,9 +18,14 @@ function App() {
         </Toolbar>
       </AppBar>
       {notes.map((note, index) => (
-        <Card key={index} sx={{ margin: 1 }}>
+        <Card
+          aria-labelledby={`note${index}`}
+          key={index}
+          sx={{ margin: 1 }}
+          role="listitem"
+        >
           <CardContent>
-            <Typography>{note}</Typography>
+            <Typography id={`note${index}`}>{note}</Typography>
           </CardContent>
           <CardActions sx={{ flexDirection: 'row-reverse' }}>
             <Button
