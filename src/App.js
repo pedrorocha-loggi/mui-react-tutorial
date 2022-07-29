@@ -25,6 +25,11 @@ function App() {
               size="small"
               color="primary"
               startIcon={<Delete />}
+              onClick={() => {
+                const newNotes = notes.slice();
+                newNotes.splice(index, 1);
+                setNotes(newNotes);
+              }}
             >
               Apagar
             </Button>
