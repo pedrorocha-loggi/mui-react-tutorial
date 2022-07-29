@@ -1,16 +1,26 @@
-import { AppBar, Box, Button, Card, CardActions, CardContent, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Card, CardActions, CardContent, Dialog, IconButton, Toolbar, Typography } from '@mui/material';
 import { Add, Delete } from '@mui/icons-material';
 import { useState } from 'react';
 
 function App() {
   const [notes, setNotes] = useState(Array(10).fill('Conteúdo').map(
     (content, index) => `${content} ${index}`));
+  const [openNewNoteDialog, setOpenNewNoteDialog] = useState(false);
   return (
     <Box>
+      <Dialog
+        open={openNewNoteDialog}
+        onClose={() => setOpenNewNoteDialog(false)}
+      >
+        My dialog
+      </Dialog>
       <AppBar position="sticky">
         <Toolbar>
           <Typography flexGrow={1}>Minhas anotações</Typography>
-          <IconButton color='inherit' >
+          <IconButton
+            color='inherit'
+            onClick={() => setOpenNewNoteDialog(true)}
+          >
             <Add />
           </IconButton>
         </Toolbar>
