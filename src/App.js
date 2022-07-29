@@ -62,11 +62,11 @@ function App() {
               size="small"
               color="primary"
               startIcon={<Delete />}
-              onClick={() => {
-                const newNotes = notes.slice();
+              onClick={() => setNotes(prevNotes => {
+                const newNotes = prevNotes.slice();
                 newNotes.splice(index, 1);
-                setNotes(newNotes);
-              }}
+                return newNotes;
+              })}
             >
               Apagar
             </Button>
