@@ -1,13 +1,29 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
-it('renders the title', () => {
-  render(<App />);
-  expect(screen.getByText(/Minhas anotações/)).toBeVisible();
+describe('basic rendering', () => {
+  it('renders the title', () => {
+    render(<App />);
+    expect(screen.getByText(/Minhas anotações/)).toBeVisible();
+  });
+
+  it('renders a note', () => {
+    render(<App initialNotes={['test note 1']} />);
+    expect(screen.getByRole('listitem', { name: /test note 1/ })).toBeVisible();
+    expect(screen.getByRole('button', { name: /Apagar test note 1/ })).toBeVisible();
+  });
+
+  it('renders several notes', () => {
+    render(<App initialNotes={['test note 1', 'test note 2']} />);
+    expect(screen.getByRole('listitem', { name: /test note 1/ })).toBeVisible();
+    expect(screen.getByRole('button', { name: /Apagar test note 1/ })).toBeVisible();
+    expect(screen.getByRole('listitem', { name: /test note 2/ })).toBeVisible();
+    expect(screen.getByRole('button', { name: /Apagar test note 2/ })).toBeVisible();
+  });
 });
 
-describe('new note dialog', () => {
+describe('add new note', () => {
   it('displays new note dialog', () => {
     render(<App />);
     userEvent.click(screen.getByLabelText(/Adicionar nota/i));

@@ -59,12 +59,18 @@ function App({ initialNotes }) {
         </Toolbar>
       </AppBar>
       {notes.map((note, index) => (
-        <Card key={index} sx={{ margin: 1 }} role='listitem'>
+        <Card
+          aria-labelledby={`note${index}`}
+          key={index}
+          sx={{ margin: 1 }}
+          role='listitem'
+        >
           <CardContent>
-            <Typography>{note}</Typography>
+            <Typography id={`note${index}`}>{note}</Typography>
           </CardContent>
           <CardActions sx={{ flexDirection: 'row-reverse' }}>
             <Button
+              aria-label={`Apagar ${note}`}
               size="small"
               color="primary"
               startIcon={<Delete />}
