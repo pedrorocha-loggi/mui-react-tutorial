@@ -2,9 +2,8 @@ import { AppBar, Box, Button, Card, CardActions, CardContent, Dialog, DialogActi
 import { Add, Delete } from '@mui/icons-material';
 import { useState } from 'react';
 
-function App() {
-  const [notes, setNotes] = useState(Array(10).fill('Conteúdo').map(
-    (content, index) => `${content} ${index}`));
+function App({ initialNotes }) {
+  const [notes, setNotes] = useState(initialNotes || []);
   const [openNewNoteDialog, setOpenNewNoteDialog] = useState(false);
   const [newNote, setNewNote] = useState('');
 
@@ -72,7 +71,6 @@ function App() {
             </Button>
           </CardActions>
         </Card>
-
       ))}
     </Box>
   );
