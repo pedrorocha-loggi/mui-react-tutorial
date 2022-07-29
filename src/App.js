@@ -44,6 +44,7 @@ function App({ initialNotes }) {
         <Toolbar>
           <Typography flexGrow={1}>Minhas anotações</Typography>
           <IconButton
+            aria-label="Adicionar nota"
             color='inherit'
             onClick={() => setOpenNewNoteDialog(true)}
           >
