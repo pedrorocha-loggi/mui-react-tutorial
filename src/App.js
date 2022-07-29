@@ -59,11 +59,17 @@ function App() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setNewNoteDialog(false)}>Cancel</Button>
-          <Button onClick={() => {
-            setNotes(prevNotes => [newNote.current].concat(prevNotes));
-            setNewNoteDialog(false);
-          }} autoFocus>Adicionar</Button>
+          <Button
+            color='error'
+            onClick={() => setNewNoteDialog(false)}
+          >Cancel</Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              setNotes(prevNotes => [newNote.current].concat(prevNotes));
+              setNewNoteDialog(false);
+            }}
+          >Adicionar</Button>
         </DialogActions>
       </Dialog>
     </Box>
