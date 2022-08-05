@@ -69,7 +69,7 @@ function App({ initialNotes }) {
           <Button
             color='error'
             onClick={() => setNewNoteDialog(false)}
-          >Cancel</Button>
+          >Cancelar</Button>
           <Button
             variant="contained"
             onClick={() => {
