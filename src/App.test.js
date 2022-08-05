@@ -34,6 +34,17 @@ it('adds a new note', () => {
   expect(screen.getByRole('listitem', { name: 'new note text 1' })).toBeVisible();
 });
 
+it('cancels adding a new note', () => {
+  render(<App />);
+  userEvent.click(screen.getByRole('button', { name: 'Nova anotação' }));
+  userEvent.type(
+    screen.getByRole('textbox', { name: 'Texto do nota' }),
+    'new note text 1'
+  );
+  userEvent.click(screen.getByRole('button', { name: 'Cancelar' }));
+  expect(screen.queryByRole('listitem', { name: 'new note text 1' })).not.toBeInTheDocument();
+});
+
 it('removes a note', () => {
   render(<App initialNotes={['test note 1', 'test note 2', 'test note 3']} />);
   userEvent.click(screen.getByRole('button', { name: 'Apagar test note 2' }));
