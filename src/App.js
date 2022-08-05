@@ -1,6 +1,23 @@
-import { AppBar, Box, Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, TextField, Toolbar, Typography } from '@mui/material';
+import { AppBar as MuiAppBar, Box, Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, TextField, Toolbar, Typography } from '@mui/material';
 import { Add, Delete } from '@mui/icons-material';
 import { useRef, useState } from 'react';
+
+function AppBar({ onAddNote }) {
+  return (
+    <MuiAppBar position="sticky">
+      <Toolbar>
+        <Typography component="h1" flexGrow={1}>Minhas anotações</Typography>
+        <IconButton
+          aria-label='Nova anotação'
+          color='inherit'
+          onClick={onAddNote}
+        >
+          <Add />
+        </IconButton>
+      </Toolbar>
+    </MuiAppBar>
+  );
+}
 
 function App({ initialNotes }) {
   const [notes, setNotes] = useState(initialNotes || []);
@@ -9,18 +26,7 @@ function App({ initialNotes }) {
 
   return (
     <Box>
-      <AppBar position="sticky">
-        <Toolbar>
-          <Typography component="h1" flexGrow={1}>Minhas anotações</Typography>
-          <IconButton
-            aria-label='Nova anotação'
-            color='inherit'
-            onClick={() => setNewNoteDialog(true)}
-          >
-            <Add />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+      <AppBar onAddNote={() => setNewNoteDialog(true)} />
       {notes.map((note, index) => (
         <Card
           aria-labelledby={`note${index}`}
