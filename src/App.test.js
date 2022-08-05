@@ -22,3 +22,14 @@ it('renders new note dialog', () => {
   expect(screen.getByRole('button', { name: 'Cancelar' })).toBeVisible();
   expect(screen.getByRole('button', { name: 'Adicionar' })).toBeVisible();
 });
+
+it('adds a new note', () => {
+  render(<App />);
+  userEvent.click(screen.getByRole('button', { name: 'Nova anotação' }));
+  userEvent.type(
+    screen.getByRole('textbox', { name: 'Texto do nota' }),
+    'new note text 1'
+  );
+  userEvent.click(screen.getByRole('button', { name: 'Adicionar' }));
+  expect(screen.getByRole('listitem', { name: 'new note text 1' })).toBeVisible();
+});

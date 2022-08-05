@@ -47,38 +47,40 @@ function App({ initialNotes }) {
           </CardActions>
         </Card>
       ))}
-      <Dialog
-        open={newNoteDialog}
-        onClose={() => setNewNoteDialog(false)}
-      >
-        <DialogTitle>Nova nota</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Adicione o texto da sua nota.
-          </DialogContentText>
-          <TextField
-            margin="dense"
-            label="Texto do nota"
-            variant="outlined"
-            type="text"
-            fullWidth
-            onChange={event => newNote.current = event.target.value}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button
-            color='error'
-            onClick={() => setNewNoteDialog(false)}
-          >Cancelar</Button>
-          <Button
-            variant="contained"
-            onClick={() => {
-              setNotes(prevNotes => [newNote.current].concat(prevNotes));
-              setNewNoteDialog(false);
-            }}
-          >Adicionar</Button>
-        </DialogActions>
-      </Dialog>
+      {newNoteDialog && (
+        <Dialog
+          open={true}
+          onClose={() => setNewNoteDialog(false)}
+        >
+          <DialogTitle>Nova nota</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Adicione o texto da sua nota.
+            </DialogContentText>
+            <TextField
+              margin="dense"
+              label="Texto do nota"
+              variant="outlined"
+              type="text"
+              fullWidth
+              onChange={event => newNote.current = event.target.value}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              color='error'
+              onClick={() => setNewNoteDialog(false)}
+            >Cancelar</Button>
+            <Button
+              variant="contained"
+              onClick={() => {
+                setNotes(prevNotes => [newNote.current].concat(prevNotes));
+                setNewNoteDialog(false);
+              }}
+            >Adicionar</Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </Box>
   );
 }
