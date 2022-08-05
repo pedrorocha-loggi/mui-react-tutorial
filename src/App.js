@@ -11,8 +11,12 @@ function App({ initialNotes }) {
     <Box>
       <AppBar position="sticky">
         <Toolbar>
-          <Typography flexGrow={1}>Minhas anotações</Typography>
-          <IconButton color='inherit' onClick={() => setNewNoteDialog(true)}>
+          <Typography component="h1" flexGrow={1}>Minhas anotações</Typography>
+          <IconButton
+            aria-label='Nova anotação'
+            color='inherit'
+            onClick={() => setNewNoteDialog(true)}
+          >
             <Add />
           </IconButton>
         </Toolbar>
