@@ -33,6 +33,7 @@ function App({ initialNotes }) {
           </CardContent>
           <CardActions sx={{ flexDirection: 'row-reverse' }}>
             <Button
+              aria-label={`Apagar ${note}`}
               onClick={() => setNotes(prevNotes => {
                 const newNotes = prevNotes.slice();
                 newNotes.splice(index, 1);
