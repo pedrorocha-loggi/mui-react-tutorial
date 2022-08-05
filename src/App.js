@@ -79,7 +79,7 @@ function NewNoteDialog({ onCancel, onAddNote }) {
   );
 }
 
-function App({ initialNotes }) {
+export default function App({ initialNotes }) {
   const [notes, setNotes] = useState(initialNotes || []);
   const [newNoteDialog, setNewNoteDialog] = useState(false);
 
@@ -109,5 +109,3 @@ function App({ initialNotes }) {
     </Box>
   );
 }
-
-export default App;
