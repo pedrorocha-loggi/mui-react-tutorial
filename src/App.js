@@ -19,6 +19,31 @@ function AppBar({ onAddNote }) {
   );
 }
 
+function NoteCard({ index, onDelete, children }) {
+  return (
+    <Card
+      aria-labelledby={`note${index}`}
+      sx={{ margin: 1 }}
+      role="listitem"
+    >
+      <CardContent>
+        <Typography id={`note${index}`}>{children}</Typography>
+      </CardContent>
+      <CardActions sx={{ flexDirection: 'row-reverse' }}>
+        <Button
+          aria-label={`Apagar ${children}`}
+          onClick={onDelete}
+          size="small"
+          color="primary"
+          startIcon={<Delete />}
+        >
+          Apagar
+        </Button>
+      </CardActions>
+    </Card>
+  );
+}
+
 function NewNoteDialog({ onCancel, onAddNote }) {
   const newNote = useRef('');
   return (
@@ -62,31 +87,15 @@ function App({ initialNotes }) {
     <Box>
       <AppBar onAddNote={() => setNewNoteDialog(true)} />
       {notes.map((note, index) => (
-        <Card
-          aria-labelledby={`note${index}`}
+        <NoteCard
           key={index}
-          sx={{ margin: 1 }}
-          role="listitem"
-        >
-          <CardContent>
-            <Typography id={`note${index}`}>{note}</Typography>
-          </CardContent>
-          <CardActions sx={{ flexDirection: 'row-reverse' }}>
-            <Button
-              aria-label={`Apagar ${note}`}
-              onClick={() => setNotes(prevNotes => {
-                const newNotes = prevNotes.slice();
-                newNotes.splice(index, 1);
-                return newNotes;
-              })}
-              size="small"
-              color="primary"
-              startIcon={<Delete />}
-            >
-              Apagar
-            </Button>
-          </CardActions>
-        </Card>
+          index={index}
+          onDelete={() => setNotes(prevNotes => {
+            const newNotes = prevNotes.slice();
+            newNotes.splice(index, 1);
+            return newNotes;
+          })}
+        >{note}</NoteCard>
       ))}
       {newNoteDialog && (
         <NewNoteDialog
